@@ -7,6 +7,10 @@ typedef pair<ll, ll> pi;
 #define F first
 #define S second
 
+void solve()
+{
+    
+}
 
 int main()
 {
@@ -16,7 +20,7 @@ int main()
     int T; T=1; cin >> T;
     while(T--)
     {
-
+        solve();
     }
 }
 
