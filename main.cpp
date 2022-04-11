@@ -6,6 +6,8 @@ typedef pair<ll, ll> pi;
 #define pb push_back
 #define F first
 #define S second
+#define forn(i, n) for (int i = 0; i < int(n); i++)
+#define sz(v) (int)v.size()
 
 void solve()
 {
