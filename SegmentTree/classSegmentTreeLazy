@@ -14,7 +14,7 @@ class SegmentTree {
             vector < ll > A;
  
             SegmentTree( int sz ) {
-                  // need to clear!
+ 
                   segT.resize(4 * sz + 10);
                   A.resize(sz + 1);
             }
@@ -36,44 +36,39 @@ class SegmentTree {
                   MakeSegmentTree( L, M, Lc( idx ) );
                   MakeSegmentTree( M + 1, R, Rc( idx ) );
                   segT[ idx ] = Merge( segT[ Lc( idx ) ], segT[ Rc( idx ) ] );
-                  cout << segT[idx].value << " " << L << " " << R << "\n";
             }
  
             node RangeQuery( int L, int R, int idx, int l, int r, ll carry) {
                   node F;
-                  //cout << L << " " << R << " " << l << " " << r << "\n";
+                  //cout << L << " " << R << " " << idx << " " << carry << " " << l << " " << r << "\n";
                   if ( L > r || R < l )    return F;
-                  if ( L >= l && R <= r ) { 
+                  if ( L >= l && R <= r ) {
                     F=segT[idx];
-                    cout << F.value << " " << carry << "\n";
                     F.value+=carry;
-                    cout << L << " " << R << " " << l << " " << r << " " << F.value << "\n";
+                    //cout << "value " << F.value << "\n";
                     return F;
                   }
  
                   int M = ( L + R ) / 2;
  
-                  F = Merge( RangeQuery( L, M, Lc( idx ), l, r, carry+segT[idx].lazy), 
-                  RangeQuery( M + 1, R, Rc( idx ), l, r, carry+segT[idx*2].lazy ) );
-                  segT[ idx ] = Merge( segT[ Lc( idx ) ], segT[ Rc( idx ) ] ); //is it useful?
- 
+                  F = Merge( RangeQuery( L, M, Lc( idx ), l, r, carry+segT[idx].lazy),
+                  RangeQuery( M + 1, R, Rc( idx ), l, r, carry+segT[idx].lazy ) );
+                  //cout << "combined " << L << " " << R << " " << F.value << "\n";
                   return F;
             }
-
+ 
             void RangeUpdate(int L, int R, int idx, int l, int r, ll x) {
-                //cout << L << " " << R << " " << l << " " << r << "\n";
                 if(L>r || R<l) return;
                 if(L>=l && R<=r)
                 {
                     segT[idx].value+=x;
                     segT[idx].lazy+=x;
-                    //cout << L << " " << R << " " << l << " " <<r << "\n";
-                    //cout << segT[idx].value << " " << segT[idx].lazy << "\n";
+                    //cout << "update " << idx << " " << L << " " << R << " " << x << "\n";
                     return;
                 }
                 int M = ( L + R ) / 2;
                 RangeUpdate(L, M, idx*2, l, r, x);
                 RangeUpdate(M+1, R, idx*2+1, l, r, x);
-                segT[idx]=Merge(segT[idx*2], segT[idx*2+1]);
+                segT[idx].value=min(segT[idx*2].value, segT[idx*2+1].value)+segT[idx].lazy;
             }
 };
