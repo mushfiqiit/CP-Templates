@@ -24,7 +24,7 @@ freopen("input.txt", "r", stdin);
     cin.tie(NULL);cout.tie(NULL);
     int T; T=1; 
     cin >> T;
-    while(T--)
+    forn(i, T)
     {
         solve();
     }
