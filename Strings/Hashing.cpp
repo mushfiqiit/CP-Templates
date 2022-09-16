@@ -22,16 +22,7 @@ void init()
         h2[i+1]=(h2[i]+(s[i]-'a'+1)*pp2[i+1])%mod2;
     }
 
-    for(int i=0;i<26;i++)
-    {
-        if(gb[i]=='0') gb[i]='1';
-        else gb[i]='0';
-    }
-    for(int i=0;i<n;i++)
-    {
-        pr[i+1]=pr[i];
-        if(gb[s[i]-'a']-'0') pr[i+1]++;
-    }
+    
     //forn(i, n) cout << pp[i] << " "; cout << "\n";
 }
 
