@@ -1,7 +1,6 @@
 struct suffix_array {
 vector<int> sa, lcp;
-suffix_array(string& s, int lim=256) { // or
-    basic_string<int>
+suffix_array(string& s, int lim=256) { 
   #define rep(i,a,b) for(int i=a;i<b;i++)
 int n = s.size() + 1, k = 0, a, b; vector<int> x(s.begin(),s.end()+1), y(n),
 ws(max(n, lim)), rank(n);
