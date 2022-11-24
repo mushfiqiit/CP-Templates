@@ -5,19 +5,13 @@ ll fac[100005];
 ll p(ll a, ll n)
 {
     ll res=1;
-
     while(n)
     {
-        if(n%2)
-        {
-            res=((res%M)*(a%M))%M;
-            n--;
+        if(n%2) {
+            res=((res%M)*(a%M))%M; n--;
         }
-
-        else
-        {
-            a=((a%M)*(a%M))%M;
-            n=n/2;
+        else {
+            a=((a%M)*(a%M))%M; n=n/2;
         }
     }
     return res;
