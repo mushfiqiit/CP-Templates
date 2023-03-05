@@ -2,20 +2,13 @@
 typedef long long int ll;
 ll fr[1001];
 ll fac[100005];
-ll p(ll a, ll n)
-{
-    ll res=1;
-    while(n)
-    {
+ll p(ll a, ll n){ 
+    ll res=1; while(n){
         if(n%2) {
-            res=((res%M)*(a%M))%M; n--;
-        }
+res=((res%M)*(a%M))%M; n--; }
         else {
-            a=((a%M)*(a%M))%M; n=n/2;
-        }
-    }
-    return res;
-}
+            a=((a%M)*(a%M))%M; n=n/2; } }
+    return res; }
 
 void f(ll n)
 {
@@ -34,7 +27,6 @@ ll ncr(ll n, ll r)
     ans=(ans+fac[n])%M;
     ll invr=p(fac[r], M-2);
     ll invnmr=p(fac[n-r], M-2);
-    //cout << ans << " " << invr << " " << invnmr << endl;
     ans=((ans%M)*(invr%M))%M;
     ans=((ans%M)*(invnmr%M))%M;
     return ans;
